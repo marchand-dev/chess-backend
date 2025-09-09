@@ -5,7 +5,10 @@ import com.marchand.chessbackend.core.factories.PieceFactory;
 import com.marchand.chessbackend.core.models.movers.PieceMoverOrchestrator;
 import com.marchand.chessbackend.core.models.validators.PieceMoveValidatorOrchestrator;
 
+import java.util.UUID;
+
 public class ChessGame {
+    private UUID gameId;
     private Board board;
     private Player player1;
     private Player player2;
@@ -13,6 +16,10 @@ public class ChessGame {
     private PieceFactory pieceFactory;
     private PieceMoverOrchestrator pieceMoverOrchestrator;
     private PieceMoveValidatorOrchestrator pieceMoveValidatorOrchestrator;
+    private int currentTurn = 0;
+
+    public ChessGame() {
+    }
 
     public ChessGame(Board board, Player player1, Player player2, PieceFactory pieceFactory,
                      PieceMoverOrchestrator pieceMoverOrchestrator, PieceMoveValidatorOrchestrator pieceMoveValidatorOrchestrator) {
@@ -107,5 +114,17 @@ public class ChessGame {
 
     private void setupPieces() {
         //
+    }
+
+    public UUID getGameId() {
+        return gameId;
+    }
+
+    public void setGameId(UUID gameId) {
+        this.gameId = gameId;
+    }
+
+    private void incTurn() {
+        currentTurn = currentTurn + 1;
     }
 }
